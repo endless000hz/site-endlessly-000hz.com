@@ -133,6 +133,31 @@
     <img src="https://i.pinimg.com/474x/61/03/e5/6103e55f7c1b1c70c97ae21e08340577.jpg">
   </div>
 </div>
+<script>
+const symbols = ["𝄞", "✞", "༄", "🂡", "𒅒", "✷"];
 
+function spawnSymbol() {
+  const el = document.createElement("div");
+
+  el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+
+  el.style.position = "fixed";
+  el.style.left = Math.random() * window.innerWidth + "px";
+  el.style.top = Math.random() * window.innerHeight + "px";
+
+  el.style.fontSize = (20 + Math.random() * 40) + "px";
+  el.style.color = "black";
+  el.style.pointerEvents = "none";
+  el.style.opacity = "0.8";
+
+  document.body.appendChild(el);
+
+  setTimeout(() => {
+    el.remove();
+  }, 1500);
+}
+
+setInterval(spawnSymbol, 200);
+</script>
 </body>
 </html>
