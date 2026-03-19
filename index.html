@@ -155,41 +155,38 @@ function spawnSymbol() {
   const frameSize = Math.max(60, window.innerWidth * 0.06);
 
   const fontSize = 25 + Math.random() * 35;
-el.style.fontSize = fontSize + "px";
-
-const size = fontSize;
-
-const minX = frameSize;
-const maxX = window.innerWidth - frameSize - size;
-
-const minY = frameSize;
-const maxY = window.innerHeight - frameSize - size;
-  el.style.position = "fixed";
   el.style.fontSize = fontSize + "px";
+
+  el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+  el.style.position = "fixed";
   el.style.color = "black";
   el.style.pointerEvents = "none";
   el.style.animation = "pulse 2s ease-in-out";
 
+  const rect = textBox.getBoundingClientRect();
+  const padding = 30;
+
   let x, y;
-const rect = textBox.getBoundingClientRect();
-const padding = 30;
 
-let ok = false;
-let tries = 0;
+  // нормальные границы
+  const minX = frameSize;
+  const maxX = window.innerWidth - frameSize;
 
-while (!ok && tries < 50) {
-  x = minX + Math.random() * (maxX - minX);
-  y = minY + Math.random() * (maxY - minY);
+  const minY = frameSize;
+  const maxY = window.innerHeight - frameSize;
 
-  const inText =
-    x > rect.left - padding &&
-    x < rect.right + padding &&
-    y > rect.top - padding &&
-    y < rect.bottom + padding;
+  // пробуем найти позицию
+  for (let i = 0; i < 80; i++) {
+    x = minX + Math.random() * (maxX - minX);
+    y = minY + Math.random() * (maxY - minY);
 
-  if (!inText) ok = true;
+    const inText =
+      x > rect.left - padding &&
+      x < rect.right + padding &&
+      y > rect.top - padding &&
+      y < rect.bottom + padding;
 
-  tries++;
+    if (!inText) break;
   }
 
   el.style.left = x + "px";
@@ -197,13 +194,7 @@ while (!ok && tries < 50) {
 
   document.body.appendChild(el);
 
-  setTimeout(() => {
-    el.remove();
-  }, 2000);
-}
-// старт
-for (let i = 0; i < 4; i++) {
-  setTimeout(spawnSymbol, i * 300);
+  setTimeout(() => el.remove(), 2500);
 }
 
 // поток
