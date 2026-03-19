@@ -4,6 +4,12 @@
   <title>Endlessly-000Hz</title>
 
   <style>
+    @keyframes pulse {
+  0%   { transform: scale(1); opacity: 0; }
+  20%  { opacity: 1; }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); opacity: 0; }
+}
     body {
       margin: 0;
       background: white;
@@ -76,7 +82,7 @@
   font-size: 22px;
   color: white;
 
-  -webkit-text-stroke: 0.8px #FF69B4; /* pink */
+  -webkit-text-stroke: 0.8px #800080; /* pink */
 }
 .text p {
   line-height: 0.7;
@@ -158,6 +164,33 @@ function spawnSymbol() {
 }
 
 setInterval(spawnSymbol, 200);
+</script>
+<script>
+const symbols = ["𝄞", "✶", "✧", "∞", "•", "✦"];
+
+function spawnSymbol() {
+  const el = document.createElement("div");
+
+  el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+
+  el.style.position = "fixed";
+  el.style.left = Math.random() * window.innerWidth + "px";
+  el.style.top = Math.random() * window.innerHeight + "px";
+
+  el.style.fontSize = (10 + Math.random() * 20) + "px";
+  el.style.color = "black";
+  el.style.pointerEvents = "none";
+
+  el.style.animation = "pulse 1s ease-in-out forwards";
+
+  document.body.appendChild(el);
+
+  setTimeout(() => {
+    el.remove();
+  }, 1000);
+}
+
+setInterval(spawnSymbol, 500);
 </script>
 </body>
 </html>
