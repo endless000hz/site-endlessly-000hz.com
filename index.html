@@ -170,28 +170,26 @@ const maxY = window.innerHeight - frameSize - size;
   el.style.pointerEvents = "none";
   el.style.animation = "pulse 2s ease-in-out";
 
-  // --- ищем "пустое место"
   let x, y;
-  let tries = 0;
-  let ok = false;
+const rect = textBox.getBoundingClientRect();
+const padding = 30;
 
-  const rect = textBox.getBoundingClientRect();
+let ok = false;
+let tries = 0;
 
-  while (!ok && tries < 50) {
-    x = frameSize + Math.random() * (window.innerWidth - frameSize * 2);
-    y = frameSize + Math.random() * (window.innerHeight - frameSize * 2);
+while (!ok && tries < 50) {
+  x = minX + Math.random() * (maxX - minX);
+  y = minY + Math.random() * (maxY - minY);
 
-    const padding = 30;
+  const inText =
+    x > rect.left - padding &&
+    x < rect.right + padding &&
+    y > rect.top - padding &&
+    y < rect.bottom + padding;
 
-const inText =
-  x > rect.left - padding &&
-  x < rect.right + padding &&
-  y > rect.top - padding &&
-  y < rect.bottom + padding;
+  if (!inText) ok = true;
 
-    if (!inText) ok = true;
-
-    tries++;
+  tries++;
   }
 
   el.style.left = x + "px";
