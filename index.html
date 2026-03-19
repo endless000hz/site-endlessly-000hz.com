@@ -77,6 +77,7 @@
   text-align: center;
 }
     .text {
+  position: relative;
   max-width: 500px;
   margin: 0 auto;
   text-align: center;
@@ -143,45 +144,57 @@
 </div>
 <script>
 const symbols = ["𝄞", "✞", "✶", "🂡", "❄", "✷"];
+  const textBox = document.querySelector(".text");
 
 let active = [];
 
 function spawnSymbol() {
   const el = document.createElement("div");
 
-  const frameSize = 100;
-  const size = 60;
+  const frameSize = Math.max(60, window.innerWidth * 0.06);
 
-  const minX = frameSize;
-  const maxX = window.innerWidth - frameSize - size;
-
-  const minY = frameSize;
-  const maxY = window.innerHeight - frameSize - size;
+  const fontSize = 25 + Math.random() * 35;
+  const size = fontSize;
 
   el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
 
   el.style.position = "fixed";
-
-  // ✅ ЭТО ГЛАВНОЕ — безопасная зона
-  el.style.left = (minX + Math.random() * (maxX - minX)) + "px";
-  el.style.top = (minY + Math.random() * (maxY - minY)) + "px";
-
-  el.style.fontSize = (25 + Math.random() * 35) + "px";
+  el.style.fontSize = fontSize + "px";
   el.style.color = "black";
   el.style.pointerEvents = "none";
-
   el.style.animation = "pulse 2s ease-in-out";
+
+  // --- ищем "пустое место"
+  let x, y;
+  let tries = 0;
+  let ok = false;
+
+  const rect = textBox.getBoundingClientRect();
+
+  while (!ok && tries < 50) {
+    x = frameSize + Math.random() * (window.innerWidth - frameSize * 2);
+    y = frameSize + Math.random() * (window.innerHeight - frameSize * 2);
+
+    const inText =
+      x > rect.left &&
+      x < rect.right &&
+      y > rect.top &&
+      y < rect.bottom;
+
+    if (!inText) ok = true;
+
+    tries++;
+  }
+
+  el.style.left = x + "px";
+  el.style.top = y + "px";
 
   document.body.appendChild(el);
 
-  active.push(el);
-
   setTimeout(() => {
     el.remove();
-    active = active.filter(x => x !== el);
-  }, 2000 + Math.random() * 1000);
+  }, 2000);
 }
-
 // старт
 for (let i = 0; i < 4; i++) {
   setTimeout(spawnSymbol, i * 300);
