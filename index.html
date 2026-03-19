@@ -13,14 +13,15 @@
   100% { transform: scale(1); opacity: 1; }
 }
     body {
-      margin: 0;
-      background: white;
+  margin: 0;
+  background: transparent;
       font-family: Helvetica, sans-serif;
       color: black;
     }
 
     /* РАМКА-КОНТЕЙНЕР */
     .frame {
+  z-index: 3;
       position: fixed;
       inset: 0; /* прижимает к краям экрана */
       pointer-events: none; /* чтобы не мешала кликам */
@@ -103,22 +104,16 @@
   object-fit: fill;
   margin-top: 15px;
 }
-    }
     .bg-gif {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 400px;
-  height: 400px;
+  inset: 0;
 
   background-image: url("https://i.pinimg.com/originals/57/37/b1/5737b1792376d706f380c63fb51271d7.gif");
-  background-size: contain;
+  background-size: 400px 400px;
   background-repeat: no-repeat;
   background-position: center;
 
-  z-index: 1;
+  z-index: 0;
   pointer-events: none;
 }
   </style>
