@@ -73,44 +73,11 @@
   margin: 0 auto;
   text-align: center;
 
-  font-size: 28px;
+  font-size: 22px;
   color: white;
 
-  /* градиентная "обводка" */
-  -webkit-text-stroke: 1px transparent;
-  position: relative;
+  -webkit-text-stroke: 0.8px #8b1c62; /* тёмно-розовый */
 }
-
-/* псевдо-слой с обводкой */
-.text::before {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-
-  z-index: -1;
-
-  background: linear-gradient(
-    90deg,
-    #ff4fd8,
-    #00e5ff,
-    #ffffff,
-    #ff4fd8
-  );
-
-  background-size: 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  animation: shine 3s linear infinite;
-}
-
-@keyframes shine {
-  0% { background-position: 0% }
-  100% { background-position: 300% }
-}
-
 .text p {
   line-height: 0.7;
   white-space: normal;
@@ -138,9 +105,9 @@
   </div>
 
   <div class="content">
-  <div class="text" data-text="ENDLESSLY 000HZ">
-    <h1>𝄞𝄞</h1>
-
+  <div class="text">
+  <h1>𝄞𝄞</h1>
+    
     <p>
       Когда очнусь душою праздной<br>
       И станет страшно за себя,<br>
