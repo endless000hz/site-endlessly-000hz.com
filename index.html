@@ -77,7 +77,8 @@
   text-align: center;
 }
     .text {
-  position: relative;
+    position: relative;
+  z-index: 2;
   max-width: 500px;
   margin: 0 auto;
   text-align: center;
@@ -102,6 +103,23 @@
   margin-top: 15px;
 }
     }
+    .bg-gif {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 400px;
+  height: 400px;
+
+  background-image: url("https://i.pinimg.com/originals/57/37/b1/5737b1792376d706f380c63fb51271d7.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: 0;
+  pointer-events: none;
+}
   </style>
 </head>
 
@@ -115,6 +133,7 @@
   </div>
 
   <div class="content">
+    <div class="bg-gif"></div>
   <div class="text">
   <h1>𝄞𝄞</h1>
     
