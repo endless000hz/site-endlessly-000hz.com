@@ -151,6 +151,17 @@ function spawnSymbol() {
 
   const frameSize = 100;
 
+const size = 60; // максимальный font-size примерно
+
+const minX = frameSize;
+const maxX = window.innerWidth - frameSize - size;
+
+const minY = frameSize;
+const maxY = window.innerHeight - frameSize - size;
+
+el.style.left = (minX + Math.random() * (maxX - minX)) + "px";
+el.style.top = (minY + Math.random() * (maxY - minY)) + "px";
+
   el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
 
   el.style.position = "fixed";
