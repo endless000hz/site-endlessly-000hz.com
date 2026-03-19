@@ -147,14 +147,12 @@ const symbols = ["𝄞", "✞", "✶", "🂡", "❄", "✷"];
 let active = [];
 
 function spawnSymbol() {
-  const el = document.createElement("div");
-
+  const frameSize = 100; // размер рамки
   el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
 
   el.style.position = "fixed";
-  el.style.left = Math.random() * window.innerWidth + "px";
-  el.style.top = Math.random() * window.innerHeight + "px";
-
+  el.style.left = (frameSize + Math.random() * (window.innerWidth - frameSize * 2)) + "px";
+el.style.top = (frameSize + Math.random() * (window.innerHeight - frameSize * 2)) + "px";
   el.style.fontSize = (25 + Math.random() * 35) + "px";
   el.style.color = "black";
   el.style.pointerEvents = "none";
