@@ -6,38 +6,91 @@
   <style>
     body {
       margin: 0;
-      background-color: white;
-color: black;
-      color: white;
+      background: white;
       font-family: Impact, Arial, sans-serif;
-
-      /* центрируем всё */
+      color: black;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+    }
 
-      /* рамка по краям */
-      border: 20px solid transparent;
-border-image: url("https://i.pinimg.com/474x/e2/ff/4d/e2ff4d1aad1be7c1f25f1004c7684a23.jpg") 30 round;
+    .frame {
+      position: relative;
+      width: 80vw;
+      height: 80vh;
+      background: white;
       box-sizing: border-box;
     }
 
     .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
+      z-index: 2;
+    }
+
+    /* 4 стороны рамки */
+    .top, .bottom, .left, .right {
+      position: absolute;
+      background-image: url("https://i.pinimg.com/474x/e2/ff/4d/e2ff4d1aad1be7c1f25f1004c7684a23.jpg");
+      background-repeat: repeat;
+      z-index: 1;
+    }
+
+    .top {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background-size: auto 60px;
+    }
+
+    .bottom {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background-size: auto 60px;
+    }
+
+    .left {
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 100%;
+      background-size: 60px auto;
+    }
+
+    .right {
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 100%;
+      background-size: 60px auto;
     }
 
     img {
-      width: 300px;
-      margin-top: 20px;
+      width: 250px;
+      margin-top: 15px;
     }
   </style>
 </head>
 
 <body>
-  <div class="content">
-    <h1>𝄞𝄞</h1>
-    <p>Когда очнусь душою праздной
+
+  <div class="frame">
+
+    <div class="top"></div>
+    <div class="bottom"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+
+    <div class="content">
+      <h1>𝄞𝄞</h1>
+      <p>/Когда очнусь душою праздной
 И станет страшно за себя,-
 Бегу я прочь с дороги грязной,
 И негодуя, и скорбя...
@@ -53,9 +106,11 @@ border-image: url("https://i.pinimg.com/474x/e2/ff/4d/e2ff4d1aad1be7c1f25f1004c7
 Как больно, следуя за ней,
 В ту область, где светлей и чище,
 Переносить свое кладбище
-Погибших звуков и теней.</p>
+Погибших звуков и теней/</p>
+      <img src="https://placekitten.com/400/300">
+    </div>
 
-    <img src="https://placekitten.com/400/300">
   </div>
+
 </body>
 </html>
