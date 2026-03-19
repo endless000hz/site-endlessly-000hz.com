@@ -9,67 +9,64 @@
       background: white;
       font-family: Impact, Arial, sans-serif;
       color: black;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
+    /* РАМКА-КОНТЕЙНЕР */
     .frame {
-      position: relative;
-      width: 80vw;
-      height: 80vh;
-      background: white;
-      box-sizing: border-box;
+      position: fixed;
+      inset: 0; /* прижимает к краям экрана */
+      pointer-events: none; /* чтобы не мешала кликам */
     }
 
-    .content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      z-index: 2;
-    }
-
-    /* 4 стороны рамки */
+    /* ОБЩИЕ СТИЛИ ПОЛОС */
     .top, .bottom, .left, .right {
       position: absolute;
       background-image: url("https://i.pinimg.com/474x/e2/ff/4d/e2ff4d1aad1be7c1f25f1004c7684a23.jpg");
-      background-repeat: repeat;
-      z-index: 1;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
     }
 
+    /* верх */
     .top {
       top: 0;
       left: 0;
       width: 100%;
-      height: 60px;
-      background-size: auto 60px;
+      height: 80px;
     }
 
+    /* низ */
     .bottom {
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 60px;
-      background-size: auto 60px;
+      height: 80px;
     }
 
+    /* левая */
     .left {
       top: 0;
       left: 0;
-      width: 60px;
+      width: 80px;
       height: 100%;
-      background-size: 60px auto;
     }
 
+    /* правая */
     .right {
       top: 0;
       right: 0;
-      width: 60px;
+      width: 80px;
       height: 100%;
-      background-size: 60px auto;
+    }
+
+    /* контент */
+    .content {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
     img {
@@ -82,15 +79,15 @@
 <body>
 
   <div class="frame">
-
     <div class="top"></div>
     <div class="bottom"></div>
     <div class="left"></div>
     <div class="right"></div>
+  </div>
 
-    <div class="content">
-      <h1>𝄞𝄞</h1>
-      <p>/Когда очнусь душою праздной
+  <div class="content">
+    <h1>𝄞𝄞</h1>
+    <p>/Когда очнусь душою праздной
 И станет страшно за себя,-
 Бегу я прочь с дороги грязной,
 И негодуя, и скорбя...
@@ -107,9 +104,7 @@
 В ту область, где светлей и чище,
 Переносить свое кладбище
 Погибших звуков и теней/</p>
-      <img src="https://placekitten.com/400/300">
-    </div>
-
+    <img src="https://i.pinimg.com/1200x/1d/1b/a8/1d1ba86f00ba86a2494732bba2336abd.jpg">
   </div>
 
 </body>
