@@ -147,12 +147,16 @@ const symbols = ["𝄞", "✞", "✶", "🂡", "❄", "✷"];
 let active = [];
 
 function spawnSymbol() {
-  const frameSize = 100; // размер рамки
+  const el = document.createElement("div"); // ❗ ЭТО БЫЛО ПРОПУЩЕНО
+
+  const frameSize = 100;
+
   el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
 
   el.style.position = "fixed";
   el.style.left = (frameSize + Math.random() * (window.innerWidth - frameSize * 2)) + "px";
-el.style.top = (frameSize + Math.random() * (window.innerHeight - frameSize * 2)) + "px";
+  el.style.top = (frameSize + Math.random() * (window.innerHeight - frameSize * 2)) + "px";
+
   el.style.fontSize = (25 + Math.random() * 35) + "px";
   el.style.color = "black";
   el.style.pointerEvents = "none";
@@ -163,23 +167,21 @@ el.style.top = (frameSize + Math.random() * (window.innerHeight - frameSize * 2)
 
   active.push(el);
 
-  // удаление через 2–3 сек (не синхронное!)
   setTimeout(() => {
     el.remove();
     active = active.filter(x => x !== el);
   }, 2000 + Math.random() * 1000);
 }
 
-// стартовый “запас” (чтобы сразу не пусто было)
+// старт
 for (let i = 0; i < 4; i++) {
   setTimeout(spawnSymbol, i * 300);
 }
 
-// поток: один за другим
+// поток
 setInterval(() => {
   spawnSymbol();
 
-  // иногда убираем старый вручную (для живости)
   if (active.length > 6) {
     const old = active.shift();
     if (old) old.remove();
