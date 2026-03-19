@@ -85,7 +85,9 @@
   font-size: 22px;
   color: white;
 
-  -webkit-text-stroke: 0.8px #000000; /* pink */ 
+  -webkit-text-stroke: 0.8px #000000;
+}
+
 .text p {
   line-height: 0.7;
   white-space: normal;
@@ -153,10 +155,15 @@ function spawnSymbol() {
   const frameSize = Math.max(60, window.innerWidth * 0.06);
 
   const fontSize = 25 + Math.random() * 35;
-  const size = fontSize;
+el.style.fontSize = fontSize + "px";
 
-  el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+const size = fontSize;
 
+const minX = frameSize;
+const maxX = window.innerWidth - frameSize - size;
+
+const minY = frameSize;
+const maxY = window.innerHeight - frameSize - size;
   el.style.position = "fixed";
   el.style.fontSize = fontSize + "px";
   el.style.color = "black";
@@ -174,11 +181,13 @@ function spawnSymbol() {
     x = frameSize + Math.random() * (window.innerWidth - frameSize * 2);
     y = frameSize + Math.random() * (window.innerHeight - frameSize * 2);
 
-    const inText =
-      x > rect.left &&
-      x < rect.right &&
-      y > rect.top &&
-      y < rect.bottom;
+    const padding = 30;
+
+const inText =
+  x > rect.left - padding &&
+  x < rect.right + padding &&
+  y > rect.top - padding &&
+  y < rect.bottom + padding;
 
     if (!inText) ok = true;
 
