@@ -142,7 +142,9 @@
   </div>
 </div>
 <script>
-const symbols = ["𝄞", "✞", "༄", "🂡", "𒅒", "✷"];
+const symbols = ["𝄞", "✞", "✶", "🂡", "❄", "✷"];
+
+let active = [];
 
 function spawnSymbol() {
   const el = document.createElement("div");
@@ -153,7 +155,7 @@ function spawnSymbol() {
   el.style.left = Math.random() * window.innerWidth + "px";
   el.style.top = Math.random() * window.innerHeight + "px";
 
-  el.style.fontSize = (30 + Math.random() * 30) + "px";
+  el.style.fontSize = (25 + Math.random() * 35) + "px";
   el.style.color = "black";
   el.style.pointerEvents = "none";
 
@@ -161,13 +163,30 @@ function spawnSymbol() {
 
   document.body.appendChild(el);
 
+  active.push(el);
+
+  // удаление через 2–3 сек (не синхронное!)
   setTimeout(() => {
     el.remove();
-  }, 2000);
+    active = active.filter(x => x !== el);
+  }, 2000 + Math.random() * 1000);
 }
 
-// ❗ ВАЖНО: по одному символу каждые 2 секунды
-setInterval(spawnSymbol, 2000);
+// стартовый “запас” (чтобы сразу не пусто было)
+for (let i = 0; i < 4; i++) {
+  setTimeout(spawnSymbol, i * 300);
+}
+
+// поток: один за другим
+setInterval(() => {
+  spawnSymbol();
+
+  // иногда убираем старый вручную (для живости)
+  if (active.length > 6) {
+    const old = active.shift();
+    if (old) old.remove();
+  }
+}, 500);
 </script>
 
 </body>
